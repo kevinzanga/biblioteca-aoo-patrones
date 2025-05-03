@@ -99,46 +99,124 @@ Esta API permite gestionar libros y registrar préstamos en una biblioteca. Est�
 
 ---
 
+### 5. Listar Autores
 
+**Método:** GET  
+**Ruta:** `/api/autores`  
+**Descripción:** Devuelve un listado de todos los autores registrados.
+
+**Ejemplo de respuesta:**
+```json
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez"
+  },
+  {
+    "id": 2,
+    "nombre": "Edwin Dev"
+  }
+]
+```
+
+---
+
+### 6. Registrar Autor
+
+**Método:** POST  
+**Ruta:** `/api/autores`  
+**Headers:**
+- Content-Type: application/json
+
+**Body:**
+```json
+{
+  "nombre": "Nuevo Autor"
+}
+```
+
+**Respuesta esperada:**
+- **Código:** 201 Created  
+- **Contenido:** Autor registrado.
+
+---
+
+### 7. Actualizar Autor
+
+**Método:** PUT  
+**Ruta:** `/api/autores/{id}`  
+**Headers:**
+- Content-Type: application/json
+
+**Body:**
+```json
+{
+  "nombre": "Nombre Actualizado"
+}
+```
+
+**Respuesta esperada:**
+- **Código:** 200 OK  
+- **Contenido:** Autor actualizado.
+
+---
+
+### 8. Eliminar Préstamo
+
+**Método:** DELETE  
+**Ruta:** `/api/prestamos/{id}`  
+**Descripción:** Elimina un préstamo existente por su ID.
+
+**Respuesta esperada:**
+- **Código:** 200 OK  
+- **Contenido:** Préstamo eliminado.
+
+---
+
+## 🧠 Patrones de Diseño Aplicados
+
+- **Factory:** Para la creación de entidades en pruebas y servicios.
+- **Facade:** Para simplificar el acceso a la lógica de negocio compleja.
+- **Observer:** Reacciona automáticamente ante eventos como la eliminación de un préstamo.
+
+---
 
 ## 🛠 Requisitos
 
-- PHP >= 8.2.12
-- Composer
-- Laravel 12
-- MySQL
+- PHP >= 8.2.12  
+- Composer  
+- Laravel 12  
+- MySQL  
 - Postman (para pruebas)
 
 ---
 
 ## 📂 Organización del Código
 
-- **Controllers:** Lógica de control de la API.
-- **Requests:** Validaciones personalizadas.
-- **Services:** Lógica de negocio (registro, edición, validación).
-- **Models:** Mapeo de entidades `Libro` y `Prestamo`.
+- `Controllers`: `LibroController`, `AutorController`, `PrestamoController`.
+- `Requests`: Validaciones como `LibroRequest`, `AutorRequest`.
+- `Services`: Lógica encapsulada en `LibroService`, `AutorService`, `PrestamoService`.
+- `Observers`: `PrestamoObserver`, asociado al modelo `Prestamo`.
+- `Models`: `Autor`, `Libro`, `Prestamo`.
 
 ---
 
-## 💡 Notas
+## 📸 Capturas recomendadas (Postman)
 
-- Asegúrate de tener las migraciones ejecutadas (`php artisan migrate`).
-- Verifica que las tablas `libro` y `prestamo` existen y están correctamente nombradas.
-- Las relaciones están definidas entre `Libro` y `Prestamo`.
+Agrega también capturas de pantalla para:
+
+- `GET /api/autores`
+- `POST /api/autores`
+- `PUT /api/autores/{id}`
+- `DELETE /api/prestamos/{id}`
+
+Incluye la solicitud y la respuesta para demostrar el correcto funcionamiento.
 
 ---
-
-## 📸 Capturas recomendadas
-
-Agrega capturas de pantalla desde Postman para las siguientes acciones:
-
-- `GET /api/libros`
-- `POST /api/libros`
-- `PUT /api/libros/{id}`
-- `POST /api/prestamos`
-
 
 ## 👨‍💻 Autor
 
 Desarrollado por: Kevin Zanga  
+Fecha: 2 de Mayo 2025
+
 
