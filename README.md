@@ -7,55 +7,138 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 📚 API de Biblioteca Laravel AOO
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Esta API permite gestionar libros y registrar préstamos en una biblioteca. Está desarrollada con Laravel siguiendo los principios de la arquitectura orientada a objetos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📦 Funcionalidades disponibles
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Listar Libros
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Método:** `GET`
+- **Ruta:** `/api/libros`
+- **Descripción:** Devuelve un listado de todos los libros.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Ejemplo de respuesta:**
+```json
+[
+  {
+    "id": 1,
+    "nombre": "Laravel desde cero",
+    "codigo": "LAR001",
+    "autor": "Juan Pérez"
+  }
+]
+```
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Registrar Libro
 
-### Premium Partners
+- **Método:** `POST`
+- **Ruta:** `/api/libros`
+- **Headers:**
+  - `Content-Type: application/json`
+- **Body:**
+```json
+{
+  "nombre": "Introducción a Laravel",
+  "codigo": "LAR002",
+  "autor": "Edwin Dev"
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+**Respuesta esperada:**
+- Código: `201 Created`
+- Contenido: Libro registrado.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Actualizar Libro
 
-## Code of Conduct
+- **Método:** `PUT`
+- **Ruta:** `/api/libros/{id}`
+- **Headers:**
+  - `Content-Type: application/json`
+- **Body:**
+```json
+{
+  "nombre": "Laravel avanzado",
+  "codigo": "LAR003",
+  "autor": "Edwin Actualizado"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Respuesta esperada:**
+- Código: `200 OK`
+- Contenido: Libro actualizado.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Registrar Préstamo
 
-## License
+- **Método:** `POST`
+- **Ruta:** `/api/prestamos`
+- **Headers:**
+  - `Content-Type: application/json`
+- **Body:**
+```json
+{
+  "fecha": "2025-04-23",
+  "lector": "Ana Martínez",
+  "libro_id": 1
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Respuesta esperada:**
+- Código: `201 Created`
+- Contenido: Préstamo registrado.
+
+---
+
+
+
+## 🛠 Requisitos
+
+- PHP >= 8.2.12
+- Composer
+- Laravel 12
+- MySQL
+- Postman (para pruebas)
+
+---
+
+## 📂 Organización del Código
+
+- **Controllers:** Lógica de control de la API.
+- **Requests:** Validaciones personalizadas.
+- **Services:** Lógica de negocio (registro, edición, validación).
+- **Models:** Mapeo de entidades `Libro` y `Prestamo`.
+
+---
+
+## 💡 Notas
+
+- Asegúrate de tener las migraciones ejecutadas (`php artisan migrate`).
+- Verifica que las tablas `libro` y `prestamo` existen y están correctamente nombradas.
+- Las relaciones están definidas entre `Libro` y `Prestamo`.
+
+---
+
+## 📸 Capturas recomendadas
+
+Agrega capturas de pantalla desde Postman para las siguientes acciones:
+
+- `GET /api/libros`
+- `POST /api/libros`
+- `PUT /api/libros/{id}`
+- `POST /api/prestamos`
+
+
+## 👨‍💻 Autor
+
+Desarrollado por: Kevin Zanga  
+
