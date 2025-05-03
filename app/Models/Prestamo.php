@@ -18,9 +18,7 @@ class Prestamo extends Model implements Rentable
     }
 
     public function validateAvailability(int $id): bool{
-        return !self::where('libro_id', $id)
-                    //->whereNull('fecha_devolucion') // supondremos que si no tiene fecha de devolución está prestado
-                    ->exists();
+        return !self::where('libro_id', $id)->exists();
          
     }
 }

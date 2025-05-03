@@ -1,10 +1,12 @@
 <?php
 namespace App\Services;
  use App\Models\Libro;
+ use App\Models\Autor;
  use App\Traits\Loggable;
 
  class LibroService{
     //use Loggable;
+
     public function getAllLibros(){
         return Libro::all();  
     }
@@ -17,7 +19,6 @@ namespace App\Services;
 
     public function createLibro(array $data){
         $libro = Libro::create($data);
-        //$this->log("Libro registrado: {$libro->id}");
         return $libro;
     }
     public function updateLibro(Libro $libro, array $data){

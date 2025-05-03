@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLibroRequests;
 use App\Http\Requests\UpdateLibroRequests;
 use App\Services\LibroService;
 use App\Models\Libro;
+use App\Models\Autor;
 use Illuminate\Http\Request;
 
 class LibroController extends Controller
@@ -34,6 +35,7 @@ class LibroController extends Controller
     {
         $libro = $this->libroService->createLibro($request->validated());
         return response()->json($libro);
+
     }
 
     public function update(UpdateLibroRequests $request, Libro $libro){

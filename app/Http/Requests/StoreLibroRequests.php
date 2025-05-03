@@ -12,7 +12,7 @@ class StoreLibroRequests extends FormRequest
         $rules =[
             'nombre'=>'required|string|max:50|unique:libro,nombre',
             'codigo'=> 'required|string|max:10',
-            'autor'=> 'required|string|max:50'
+            'autor_id'=> 'required|integer|exists:autor,id'
         ];
 
         return $rules;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Rentable;
 use App\Http\Requests\StorePrestamoRequests;
 use App\Services\PrestamoService;
+use App\Models\Prestamo;
 use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
@@ -26,5 +27,13 @@ class PrestamoController extends Controller
 
         $prestamo = $this->prestamoService->createPrestamo($data);
         return response()->json($prestamo, 201);
+    }
+    //Eliminar Prestamo
+    public function destroy($id)
+    {
+    $prestamo = Prestamo::findOrFail($id);
+    $this->prestamoService->deletePrestamo($prestamo);
+    return response()->json([
+        'message' => 'Préstamo eliminado correctamente.'], 200);
     }
 }

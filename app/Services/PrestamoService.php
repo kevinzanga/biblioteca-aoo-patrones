@@ -24,5 +24,9 @@ use App\Models\Prestamo;
         $prestamo = Prestamo::create($data);
         return $prestamo;
     }
+
+    public function deletePrestamo(Prestamo $prestamo){
+        return $prestamo->delete();
+    }   
  
  }
